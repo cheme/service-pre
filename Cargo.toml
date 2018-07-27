@@ -1,0 +1,41 @@
+[package]
+
+name = "service-pre"
+version = "0.0.1"
+authors = ["Emeric Chevalier <emericchevalier.pro@gmail.com>"]
+
+
+[features]
+#default = ["with-coroutine","mio-transport"]
+default = []
+with-coroutine = ["coroutine"]
+mio-transport = ["mio"]
+nightly = []
+
+[dependencies]
+log = "~0.3.4"
+error-chain = "~0.12.0"
+
+parking_lot = "~0.6.3"
+futures = "~0.1.15"
+futures-cpupool = "~0.1.5"
+
+[target.'cfg(not(wasm32))'.dependencies.mio]
+version = "~0.6.10"
+optional = true
+
+[target.'cfg(not(wasm32))'.dependencies.coroutine]
+version = "~0.8.0"
+optional = true
+
+[dependencies.rust-proto]
+#version = "~0.0.1"
+git = "https://github.com/cheme/rust-proto.git"
+#path = "../rust-proto/"
+
+[dependencies.immut-send]
+#version = "~0.0.1"
+git = "https://github.com/cheme/immut-send.git"
+#path = "../immut-send/"
+features = []
+
